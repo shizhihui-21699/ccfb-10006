@@ -1,0 +1,37 @@
+{
+  "name": "dep-vuln-analyzer",
+  "version": "1.0.0",
+  "description": "离线依赖漏洞影响分析器 — 解析 npm/Poetry/Cargo 锁文件，按各生态版本语义匹配 OSV 漏洞并给出最小升级方案",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shizhihui-21699/ccfb-10006.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/shizhihui-21699/ccfb-10006/issues"
+  },
+  "homepage": "https://github.com/shizhihui-21699/ccfb-10006#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/semver": "^7.8.0",
+    "playwright-core": "^1.65.1",
+    "semver": "^7.8.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  },
+  "dependencies": {
+    "smol-toml": "^1.9.1"
+  },
+  "private": true
+}

@@ -1,0 +1,234 @@
+[
+  {
+    "id": "GHSA-TEST-NPM-PRECORE",
+    "summary": "pre-core 在 1.2.3-beta.10 之前存在原型污染",
+    "details": "边界用例：fixed 恰好是预发布版本 1.2.3-beta.10。1.2.3-beta.4 受影响，1.2.3-beta.10 不受影响（beta.10 > beta.4 是数值比较，不是字典序）。",
+    "aliases": ["CVE-2024-90001"],
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "npm", "name": "pre-core" },
+        "ranges": [
+          {
+            "type": "ECOSYSTEM",
+            "events": [{ "introduced": "0" }, { "fixed": "1.2.3-beta.10" }]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-TEST-NPM-ZERO",
+    "summary": "zero 0.2.3 存在拒绝服务",
+    "details": "边界用例：^0.2.3 允许升到 0.2.4（0.x 的 caret 允许 minor 内的 patch 提升）。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "npm", "name": "zero" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "0.2.3" }, { "fixed": "0.2.4" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-TEST-NPM-TINY",
+    "summary": "tiny 0.0.3 存在越界写",
+    "details": "边界用例：^0.0.3 只接受 0.0.3，因此修复版本 0.0.4 需要放宽根清单约束。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:L/I:L/A:L" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "npm", "name": "tiny" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "0.0.3" }, { "fixed": "0.0.4" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-TEST-NPM-LEAF",
+    "summary": "leaf 2.0.0 单版本缺陷",
+    "details": "边界用例：只有 2.0.0 受影响，2.0.1 与 2.1.0 都不受影响。触发“父包精确锁定”导致必须连带升级父包。",
+    "aliases": ["CVE-2024-90002"],
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "npm", "name": "leaf" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "2.0.0" }, { "fixed": "2.0.1" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-TEST-NPM-STUCK",
+    "summary": "stuck 1.0.0 存在命令注入",
+    "details": "边界用例：父包 blocker 精确锁定 stuck=1.0.0，且没有更高版本的 blocker，因此无解。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "npm", "name": "stuck" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "1.0.0" }, { "fixed": "1.0.1" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-TEST-NPM-ANSI",
+    "summary": "ansi-regex 5.0.1 之前存在 ReDoS（对照用例）",
+    "details": "边界用例：fixed 就是 5.0.1，锁文件里的 5.0.1 与 6.0.1 都应当被判为不受影响。",
+    "aliases": ["CVE-2021-3807"],
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "npm", "name": "ansi-regex" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "3.0.0" }, { "fixed": "5.0.1" }] },
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "6.0.0" }, { "fixed": "6.0.1" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-TEST-NPM-MIDDLE",
+    "summary": "middle 1.0.0 存在信息泄露",
+    "details": "普通用例：根清单用通配 * 声明，任何版本都满足，因此可直接升级。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:L/I:N/A:N" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "npm", "name": "middle" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "1.0.0" }, { "fixed": "1.1.0" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GHSA-TEST-NPM-ISODD-DEV",
+    "summary": "is-odd 3.0.1 依赖链上的开发依赖缺陷",
+    "details": "用于验证 dev 依赖标记与过滤。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "npm", "name": "is-odd" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "3.0.0" }, { "fixed": "3.0.2" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PYSEC-TEST-URLLIB3",
+    "summary": "urllib3 1.26.5 之前存在请求走私",
+    "details": "边界用例：requests 声明 urllib3 >=1.21.1,<2，修复版本 1.26.5 满足该约束。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "PyPI", "name": "urllib3" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "1.26.0" }, { "fixed": "1.26.5" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PYSEC-TEST-PYYAML",
+    "summary": "PyYAML 5.4.1 及之前存在任意代码执行",
+    "details": "边界用例：last_affected 是 5.4.1（闭区间），因此 5.4.1 本身受影响；且没有 fixed 事件，OSV 无法给出修复版本。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "PyPI", "name": "PyYAML" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "5.4.0" }, { "last_affected": "5.4.1" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PYSEC-TEST-ANSIBLE-BASE",
+    "summary": "ansible-base 2.10.0rc1 存在模板注入",
+    "details": "边界用例：2.10.0rc1 位于 [2.10.0rc1, 2.10.0) 内，是“锁文件里最新的版本却仍然受影响”的陷阱。父包用 ~=2.10.0rc1 声明，2.10.0 满足其前缀语义。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:N" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "PyPI", "name": "ansible-base" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "2.10.0rc1" }, { "fixed": "2.10.0" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PYSEC-TEST-IDNA",
+    "summary": "idna 3.0 ~ 3.1 之前存在规范化绕过",
+    "details": "边界用例：锁文件用带 local 段的版本 3.0.1+local；PEP 440 里 local 段排在同版本之后，因此 3.0 < 3.0.1+local < 3.1。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "PyPI", "name": "idna" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "3.0" }, { "fixed": "3.1" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "RUSTSEC-TEST-TIME",
+    "summary": "time 0.3.37 之前存在本地拒绝服务",
+    "details": "普通用例：Cargo.lock 不含声明区间，升级方案会显式标注“无法验证父约束”。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "crates.io", "name": "time" },
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "0.3.0" }, { "fixed": "0.3.37" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "RUSTSEC-TEST-SYN",
+    "summary": "syn 1.x 在 1.0.110 之前存在解析器缺陷",
+    "details": "多版本 crate 用例：锁文件同时有 syn 1.0.109 与 2.0.0，只有 1.0.109 受影响。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "crates.io", "name": "syn" },
+        "ranges": [
+          { "type": "SEMVER", "events": [{ "introduced": "1.0.0" }, { "fixed": "1.0.110" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "RUSTSEC-TEST-POWERFMT",
+    "summary": "powerfmt 0.2.0-rc.1 存在格式化溢出",
+    "details": "边界用例：introduced 恰好是预发布 0.2.0-rc.1，且 rc.1 < 0.2.0，因此 rc 版本命中、正式版不命中。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "crates.io", "name": "powerfmt" },
+        "ranges": [
+          { "type": "SEMVER", "events": [{ "introduced": "0.2.0-rc.1" }, { "fixed": "0.2.0" }] }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "RUSTSEC-TEST-SERDE-LIST",
+    "summary": "serde 1.0.193 存在显式版本清单中的缺陷",
+    "details": "用于验证 affected.versions 精确清单路径；同时提供一个 range 供给出修复版本。",
+    "severity": [{ "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N" }],
+    "affected": [
+      {
+        "package": { "ecosystem": "crates.io", "name": "serde" },
+        "versions": ["1.0.193"],
+        "ranges": [
+          { "type": "ECOSYSTEM", "events": [{ "introduced": "1.0.200" }, { "fixed": "1.0.194" }] }
+        ]
+      }
+    ]
+  }
+]
